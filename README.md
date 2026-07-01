@@ -86,7 +86,7 @@ The repository includes:
 | :--- | :------ |
 | Xilinx Vivado | Design entry, simulation, and RTL analysis |
 | Verilog HDL | Hardware Description Language |
-| ChatGPT | To Generate Readme Section of Repository |
+| ChatGPT | Syntax of Readme Section of Repository |
 ---
 
 ## Author
