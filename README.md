@@ -1,24 +1,28 @@
-# UART Transceiver in Verilog
+# UART Transceiver (Verilog HDL)
 
-A synthesizable Universal Asynchronous Receiver Transmitter (UART) designed in **Verilog HDL** and implemented using **Xilinx Vivado**. The project includes independent transmitter and receiver modules, a baud rate generator, and a top-level UART transceiver integrating all components.
+A UART (Universal Asynchronous Receiver Transmitter) Transceiver designed in **Verilog HDL** and implemented using **Xilinx Vivado**. This project includes separate transmitter and receiver modules, a baud rate generator, and a top module integrating all components.
+
+One of the key features of this implementation is the **16× oversampling receiver**, where the receiver samples incoming serial data at **16 times the baud rate** for improved timing accuracy and reliable data reception.
 
 ---
 
 ## Features
 
-- 8-bit UART Communication
-- Separate Transmitter (TX) and Receiver (RX)
-- Configurable Baud Rate Generator
-- Modular and synthesizable Verilog design
-- Top-level UART integration
-- Functional simulation and RTL verification in Vivado
+- UART Transmitter (8-bit data)
+- UART Receiver (8-bit data)
+- 16× Oversampling Receiver
+- Baud Rate Generator
+- Top Module Integration
+- Loopback Testbench Verification
+- RTL Schematics
+- Simulation Waveforms
 
 ---
 
 ## Project Structure
 
 ```
-UART_Transceiver/
+UART-Transceiver/
 │
 ├── UART_Top/
 │   ├── Design Files
@@ -38,70 +42,60 @@ UART_Transceiver/
 │   ├── RTL Schematic
 │   └── Simulation Waveform
 │
-├── Baud_Rate_Generator/
-│   ├── Design Files
-│   └── RTL Schematic
-│
-└── README.md
+└── Baud_Rate_Generator/
+    ├── Design File
+    └── RTL Schematic
 ```
 
 ---
 
 ## Module Overview
 
-### UART Transmitter
-- Serializes 8-bit parallel data
-- Generates Start, Data, and Stop bits
-- Busy signal indicates active transmission
+| Module | Description |
+|---------|-------------|
+| **UART Transmitter** | Serially transmits 8-bit parallel data with start and stop bits. |
+| **UART Receiver** | Receives serial data using **16× oversampling** for accurate sampling and reconstructs the original 8-bit data. |
+| **Baud Rate Generator** | Generates baud clocks for both the transmitter and the 16× receiver. |
+| **UART Top** | Integrates the transmitter, receiver, and baud rate generator into a complete UART transceiver. |
 
-### UART Receiver
-- Detects incoming serial data
-- Samples and reconstructs the received byte
-- Outputs valid parallel data after successful reception
+---
 
-### Baud Rate Generator
-- Generates baud enable signals from the system clock
-- Used for timing synchronization between transmitter and receiver
+## 16× Oversampling
 
-### UART Top Module
-- Integrates the transmitter, receiver, and baud rate generator
-- Provides a complete UART communication interface
+Unlike a basic UART receiver that samples only once per bit, this design uses **16× oversampling**.
+
+The baud rate generator provides:
+- **1× baud clock** for the transmitter
+- **16× baud clock** for the receiver
+
+This allows the receiver to sample each incoming bit near its center, improving synchronization and making the communication more tolerant to timing mismatches between the transmitter and receiver.
 
 ---
 
 ## Verification
 
-Each module has been independently verified using dedicated testbenches in Vivado.
+The design has been verified in **Xilinx Vivado** using simulation testbenches.
 
-The repository includes:
-- Verilog source files
-- Testbenches
-- RTL schematics
-- Simulation waveforms
+Included in the repository:
+
+- RTL Schematics
+- Simulation Waveforms
+- Individual module testbenches
+- Top-level loopback verification
 
 ---
 
 ## Tools Used
 
-- **Language:** Verilog HDL
-- **EDA Tool:** Xilinx Vivado
-- **Simulation:** Vivado Simulator
-
----
-
-## Future Improvements
-
-- Configurable data length
-- Parity bit support
-- Multiple stop bit options
-- FIFO buffering
-- Error detection (Framing, Parity, Overrun)
-- Adjustable baud rate through parameters
+| Tool | Purpose |
+|------|---------|
+| Xilinx Vivado | Design, Simulation and RTL Analysis |
+| Verilog HDL | Hardware Description Language |
 
 ---
 
 ## Author
 
-**Om Patel**
-- Electronics and Communication Engineering
-- Nirma University
+**Om Patel**  
+Electronics & Communication Engineering  
+Nirma University
