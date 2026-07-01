@@ -1,21 +1,21 @@
 # UART Transceiver (Verilog HDL)
 
-A UART (Universal Asynchronous Receiver Transmitter) Transceiver designed in **Verilog HDL** and implemented using **Xilinx Vivado**. This project includes separate transmitter and receiver modules, a baud rate generator, and a top module integrating all components.
+This project implements a UART (Universal Asynchronous Receiver Transmitter) in **Verilog HDL** using **Xilinx Vivado**. It includes separate transmitter and receiver modules, a baud rate generator, and a top module that integrates all of them into a complete UART transceiver.
 
-One of the key features of this implementation is the **16× oversampling receiver**, where the receiver samples incoming serial data at **16 times the baud rate** for improved timing accuracy and reliable data reception.
+The receiver is designed using **16× oversampling**, where it samples the incoming serial data at 16 times the baud rate. This improves the accuracy of data reception and makes the communication more reliable.
 
 ---
 
 ## Features
 
-- UART Transmitter (8-bit data)
-- UART Receiver (8-bit data)
+- 8-bit UART Transmitter
+- 8-bit UART Receiver
 - 16× Oversampling Receiver
 - Baud Rate Generator
-- Top Module Integration
-- Loopback Testbench Verification
+- Top-Level UART Integration
 - RTL Schematics
 - Simulation Waveforms
+- Testbenches for all major modules
 
 ---
 
@@ -49,38 +49,35 @@ UART-Transceiver/
 
 ---
 
-## Module Overview
+## Modules
 
 | Module | Description |
-|---------|-------------|
-| **UART Transmitter** | Serially transmits 8-bit parallel data with start and stop bits. |
-| **UART Receiver** | Receives serial data using **16× oversampling** for accurate sampling and reconstructs the original 8-bit data. |
-| **Baud Rate Generator** | Generates baud clocks for both the transmitter and the 16× receiver. |
-| **UART Top** | Integrates the transmitter, receiver, and baud rate generator into a complete UART transceiver. |
+| :------ | :---------- |
+| UART Transmitter | Converts 8-bit parallel data into serial data with start and stop bits. |
+| UART Receiver | Receives serial data using **16× oversampling** and reconstructs the original 8-bit data. |
+| Baud Rate Generator | Generates the baud clocks required by the transmitter and receiver. |
+| UART Top | Connects all the modules together to form a complete UART transceiver. |
 
 ---
 
 ## 16× Oversampling
 
-Unlike a basic UART receiver that samples only once per bit, this design uses **16× oversampling**.
+The transmitter operates with the normal baud clock, while the receiver uses a clock that is **16 times faster**.
 
-The baud rate generator provides:
-- **1× baud clock** for the transmitter
-- **16× baud clock** for the receiver
-
-This allows the receiver to sample each incoming bit near its center, improving synchronization and making the communication more tolerant to timing mismatches between the transmitter and receiver.
+Instead of sampling each bit only once, the receiver samples at **16× the baud rate** and captures the bit near its center. This improves timing accuracy and helps achieve more reliable communication.
 
 ---
 
 ## Verification
 
-The design has been verified in **Xilinx Vivado** using simulation testbenches.
+The design was verified in **Xilinx Vivado** using simulation testbenches.
 
-Included in the repository:
+The repository includes:
 
-- RTL Schematics
-- Simulation Waveforms
-- Individual module testbenches
+- Design files
+- Testbenches
+- RTL schematics
+- Simulation waveforms
 - Top-level loopback verification
 
 ---
@@ -88,8 +85,8 @@ Included in the repository:
 ## Tools Used
 
 | Tool | Purpose |
-|------|---------|
-| Xilinx Vivado | Design, Simulation and RTL Analysis |
+| :--- | :------ |
+| Xilinx Vivado | Design entry, simulation, and RTL analysis |
 | Verilog HDL | Hardware Description Language |
 
 ---
@@ -97,5 +94,5 @@ Included in the repository:
 ## Author
 
 **Om Patel**  
-Electronics & Communication Engineering  
+B.Tech. Electronics & Communication Engineering  
 Nirma University
