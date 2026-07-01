@@ -2,8 +2,6 @@
 
 This project implements a UART (Universal Asynchronous Receiver Transmitter) in **Verilog HDL** using **Xilinx Vivado**. It includes separate transmitter and receiver modules, a baud rate generator, and a top module that integrates all of them into a complete UART transceiver.
 
-The receiver is designed using **16× oversampling**, where it samples the incoming serial data at 16 times the baud rate. This improves the accuracy of data reception and makes the communication more reliable.
-
 ---
 
 ## Features
@@ -88,7 +86,7 @@ The repository includes:
 | :--- | :------ |
 | Xilinx Vivado | Design entry, simulation, and RTL analysis |
 | Verilog HDL | Hardware Description Language |
-
+| ChatGPT | To Generate Readme Section of Repository |
 ---
 
 ## Author
